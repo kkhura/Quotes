@@ -6,12 +6,14 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.ContextWrapper
 import android.os.Bundle
 import android.os.Handler
+import android.support.annotation.WorkerThread
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
 import android.widget.Toast
 import kkhura.com.quotes.app.R
+import kkhura.com.quotes.app.database.DbWorkerThread
 import kkhura.com.quotes.app.database.MyDatabase
 import kkhura.com.quotes.app.homescreen.adapter.QuotesCategoryAdapter
 import kkhura.com.quotes.app.quotesHome.adapter.OnItemClicked
@@ -34,6 +36,7 @@ import java.io.OutputStream
 class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
     private lateinit var quoteCategoryViewModel: QuoteCategoryViewModel
+    private lateinit var mDbWorkerThread: DbWorkerThread
 
     override fun itemClicked(postion: Int) {
         val transaction = activity!!.supportFragmentManager.beginTransaction();
@@ -54,6 +57,9 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
 
         }
+
+        mDbWorkerThread = DbWorkerThread("dbWorkerThread")
+        mDbWorkerThread.start()
 
         copyDataBase()
 
@@ -123,10 +129,11 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
     }
 
 
-/*    private fun fetchQuotesCategoryDataFromDb() {
+    private fun fetchQuotesCategoryDataFromDb() {
         var task = Runnable {
+            val mDB = MyDatabase.getInstance(activity!!.applicationContext)
             val listQuotesCategoryModel: List<QuotesCategoryModel>? =
-                    mDB?.quotesCategoryDao()?.getAll()
+                    mDB?.quotesCategoryDao()?.getAllData()
 
 
             mUiHandler.post({
@@ -138,7 +145,7 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
             })
         }
         mDbWorkerThread.postTask(task)
-    }*/
+    }
 
     private fun bindDataWithUi(listQuotesCategoryModel: List<QuotesCategoryModel>) {
         categoryList.addAll(listQuotesCategoryModel)
@@ -159,22 +166,27 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
         recycleView.adapter = QuotesCategoryAdapter(categoryList, this!!.activity!!, this, isGrid)
         onLayoutManagerGrid(isGrid)
 
-        quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
-        quoteCategoryViewModel.quoteCategoryList.observe(
+
+        fetchQuotesCategoryDataFromDb()
+
+        /*quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
+        quoteCategoryViewModel.getQuoteCategoryList().observe(
                 this,
                 Observer {
                     @Override
-                    fun onChanged(listQuotesCategoryModel: List<QuotesCategoryModel>?) {
-                        if (listQuotesCategoryModel == null || listQuotesCategoryModel?.size == 0) {
-                            Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
-                        } else {
-                            bindDataWithUi(listQuotesCategoryModel);
-                        }
-
+                    fun onChanged(listQuotesCategoryModel: List<QuotesCategoryModel>) {
+                        mUiHandler.post({
+                            if (listQuotesCategoryModel == null || listQuotesCategoryModel?.size == 0) {
+                                Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
+                            } else {
+                                bindDataWithUi(listQuotesCategoryModel);
+                            }
+                        })
                     }
                 }
-        )
+        )*/
     }
+
 
     override fun onDestroy() {
         MyDatabase.destroyInstance()

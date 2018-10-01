@@ -23,8 +23,11 @@ interface QuotesCategoryDao {
     fun insert(category: QuotesCategoryModel)
 
     @Query("SELECT * FROM category")
-    abstract fun getAll(): LiveData<List<QuotesCategoryModel>>
+    fun getAllData(): List<QuotesCategoryModel>
+
+    @Query("SELECT * FROM category")
+    fun getAll(): LiveData<List<QuotesCategoryModel>>
 
     @Query("SELECT * FROM quotes WHERE category_id = :id")
-    abstract fun findQuoteId(id: Int): List<QuoteModel>
+    fun findQuoteId(id: Int): List<QuoteModel>
 }

@@ -2,13 +2,13 @@ package kkhura.com.quotes.app.quotesHome.Reprository
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import android.os.AsyncTask
 import kkhura.com.quotes.app.database.MyDatabase
 import kkhura.com.quotes.app.quotesHome.dao.QuotesCategoryDao
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 
 class QuotesCatResprository {
-    private lateinit var quoteCategoryDao: QuotesCategoryDao
+    private var quoteCategoryDao: QuotesCategoryDao
     private lateinit var allCategory: LiveData<List<QuotesCategoryModel>>
 //    private lateinit var mDbWorkerThread: DbWorkerThread
 
@@ -22,16 +22,24 @@ class QuotesCatResprository {
 //        mDbWorkerThread.start()
     }
 
-    public fun getAllCatetegory(): LiveData<List<QuotesCategoryModel>> {
+    public fun getAll(): LiveData<List<QuotesCategoryModel>> {
         /*var task = Runnable {
             val listQuotesCategoryModel: List<QuotesCategoryModel>? =
                     mDB?.quotesCategoryDao()?.getAll()
 
         }
         mDbWorkerThread.postTask(task)*/
-        return allCategory
+//        FetchAllCategory(quoteCategoryDao).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+        return  allCategory;
 
     }
 
 
+//    private class FetchAllCategory(val quoteCategoryDao: QuotesCategoryDao) : AsyncTask<Void, Void, Void>() {
+//
+//        override fun doInBackground(vararg p0: Void?): Void? {
+//            allCategory= quoteCategoryDao.getAll()
+//        }
+//
+//    }
 }

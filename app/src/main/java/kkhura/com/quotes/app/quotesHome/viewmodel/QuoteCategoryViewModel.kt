@@ -8,12 +8,15 @@ import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 
 public class QuoteCategoryViewModel : AndroidViewModel {
     private var quotesCatResprository: QuotesCatResprository
-    var quoteCategoryList: LiveData<List<QuotesCategoryModel>>
+    private var quoteCategoryList: LiveData<List<QuotesCategoryModel>>
 
     constructor(application: Application) : super(application) {
         quotesCatResprository = QuotesCatResprository(application)
-        quoteCategoryList = quotesCatResprository.getAllCatetegory()
+        quoteCategoryList = quotesCatResprository.getAll()
     }
 
+    fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>> {
+        return quoteCategoryList;
+    }
 
 }

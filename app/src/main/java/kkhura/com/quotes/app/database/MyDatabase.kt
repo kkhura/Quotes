@@ -12,12 +12,10 @@ import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 
 
-@Database(entities = arrayOf(QuotesCategoryModel::class, QuoteModel::class), version = 2, exportSchema = false)
+@Database(entities = arrayOf(QuotesCategoryModel::class, QuoteModel::class), version = 2)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun quotesCategoryDao(): QuotesCategoryDao
-
-    private val INSTANCE: MyDatabase? = null
 
     companion object {
         private var INSTANCE: MyDatabase? = null
