@@ -1,83 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_marginBottom="5dp"
     android:layout_height="wrap_content"
-    tools:context=".quotesHome.fragment.OpenQuoteFragment">
+    custom:cardBackgroundColor="@android:color/white">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardQuote"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardQuote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <kkhura.com.quotes.app.customview.CustomFontTextView
-                    android:id="@+id/tvQuote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/text_dimen_top"
-                    android:paddingEnd="@dimen/text_dimen_start"
-                    android:paddingStart="@dimen/text_dimen_start"
-                    android:textSize="@dimen/quote_text"
-                    android:paddingTop="@dimen/text_dimen_top"
-                    android:text="@string/hello_blank_fragment" />
-            </android.support.v7.widget.CardView>
-
-            <LinearLayout
-                android:id="@+id/layoutFooter"
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvQuote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:orientation="horizontal"
-                android:weightSum="4">
+                android:gravity="center"
+                android:paddingBottom="@dimen/text_dimen_top"
+                android:paddingEnd="@dimen/text_dimen_start"
+                android:paddingStart="@dimen/text_dimen_start"
+                android:paddingTop="@dimen/text_dimen_top"
+                android:text="@string/hello_blank_fragment"
+                android:textSize="@dimen/quote_text" />
+        </android.support.v7.widget.CardView>
 
-                <kkhura.com.quotes.app.customview.CustomFontTextView
-                    android:id="@+id/tvSave"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="@string/save"
-                    android:textSize="@dimen/btn_text_size" />
+        <LinearLayout
+            android:id="@+id/layoutFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
-                <kkhura.com.quotes.app.customview.CustomFontTextView
-                    android:id="@+id/tvCopy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="@string/copy"
-                    android:textSize="@dimen/btn_text_size" />
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="@string/save"
+                android:textSize="@dimen/btn_text_size" />
 
-                <kkhura.com.quotes.app.customview.CustomFontTextView
-                    android:id="@+id/tvEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="@string/edit"
-                    android:textSize="@dimen/btn_text_size" />
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvCopy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="@string/copy"
+                android:textSize="@dimen/btn_text_size" />
 
-                <kkhura.com.quotes.app.customview.CustomFontTextView
-                    android:id="@+id/tvShare"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="@string/share"
-                    android:textSize="@dimen/btn_text_size" />
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="@string/edit"
+                android:textSize="@dimen/btn_text_size" />
 
-            </LinearLayout>
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="@string/share"
+                android:textSize="@dimen/btn_text_size" />
+
         </LinearLayout>
-    </android.support.v7.widget.CardView>
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

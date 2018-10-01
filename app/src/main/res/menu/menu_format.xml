@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuGrid"
+        android:icon="@drawable/ic_hide_password"
+        android:title="@string/grid"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menuList"
+        android:icon="@drawable/ic_hide_password"
+        android:title="@string/list"
+        app:showAsAction="always" />
+
+</menu>

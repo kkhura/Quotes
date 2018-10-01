@@ -7,7 +7,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.migration.Migration
 import android.content.Context
 import android.util.Log
-import kkhura.com.quotes.app.dao.QuotesCategoryDao
+import kkhura.com.quotes.app.quotesHome.dao.QuotesCategoryDao
 import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 

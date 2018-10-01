@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".homescreen.fragment.HomeFragment">
+    android:layout_marginBottom="5dp"
+    custom:cardBackgroundColor="@android:color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <kkhura.com.quotes.app.customview.CustomFontTextView
-        android:id="@+id/txtCategory"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:padding="10dp">
 
-</FrameLayout>
+        <kkhura.com.quotes.app.customview.CircularImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/category3"
+            app:civ_border="true"
+            app:civ_border_width="3dp" />
+        <!--app:civ_border_color="@color/colorAccent"-->
+
+        <kkhura.com.quotes.app.customview.CustomFontTextView
+            android:id="@+id/txtCategory"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

@@ -1,6 +1,7 @@
-package kkhura.com.quotes.app.dao
+package kkhura.com.quotes.app.quotesHome.dao
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
@@ -22,7 +23,7 @@ interface QuotesCategoryDao {
     fun insert(category: QuotesCategoryModel)
 
     @Query("SELECT * FROM category")
-    abstract fun getAll(): List<QuotesCategoryModel>
+    abstract fun getAll(): LiveData<List<QuotesCategoryModel>>
 
     @Query("SELECT * FROM quotes WHERE category_id = :id")
     abstract fun findQuoteId(id: Int): List<QuoteModel>

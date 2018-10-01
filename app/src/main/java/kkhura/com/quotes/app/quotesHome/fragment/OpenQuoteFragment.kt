@@ -29,7 +29,7 @@ private const val CATEGORY_ID: String = "CATEGORY_ID"
 class OpenQuoteFragment : BaseFragment() {
     private var list: ArrayList<QuoteModel>? = null
     private var mDB: MyDatabase? = null
-    private lateinit var mDbWorkerThread: DbWorkerThread
+//    private lateinit var mDbWorkerThread: DbWorkerThread
     private val mUiHandler = Handler()
     private var _id: Int = 0
 
@@ -39,11 +39,11 @@ class OpenQuoteFragment : BaseFragment() {
         arguments?.let {
             _id = it.getInt(CATEGORY_ID)
         }
-        mDbWorkerThread = DbWorkerThread("dbWorkerThread")
-        mDbWorkerThread.start()
+//        mDbWorkerThread = DbWorkerThread("dbWorkerThread")
+//        mDbWorkerThread.start()
 
 
-        mDB = MyDatabase.getInstance(activity.applicationContext)
+        mDB = MyDatabase.getInstance(activity!!.applicationContext)
 
     }
 
@@ -57,7 +57,7 @@ class OpenQuoteFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         list = ArrayList();
         rvQuotes.layoutManager = LinearLayoutManager(activity)
-        rvQuotes.adapter = QuotesAdapter(list, activity)
+        rvQuotes.adapter = QuotesAdapter(list, this!!.activity!!)
         fetchQuotesCategoryDataFromDb()
     }
 
@@ -75,7 +75,7 @@ class OpenQuoteFragment : BaseFragment() {
                 }
             })
         }
-        mDbWorkerThread.postTask(task)
+//        mDbWorkerThread.postTask(task)
     }
 
     private fun bindDataWithUi(listQuoteModel: List<QuoteModel>) {

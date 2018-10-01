@@ -29,4 +29,6 @@
     <string name="saved_as_image">Saved as Image in Gallery</string>
     <string name="share_using">Share</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="grid">Grid</string>
+    <string name="list">List</string>
 </resources>

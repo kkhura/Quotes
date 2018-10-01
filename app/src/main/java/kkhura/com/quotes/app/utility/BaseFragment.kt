@@ -1,6 +1,6 @@
 package kkhura.com.quotes.app.utility
 
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import kkhura.com.quotes.app.customview.CustomFontTextView
 
 

@@ -19,12 +19,12 @@ open class BaseActivity : AppCompatActivity() {
     open fun selectItem(position: Int) {
         when (position) {
             1 -> {
-                val transaction = getFragmentManager().beginTransaction();
-                transaction.add(R.id.frameContainer, QuotesCategoryFragment.newInstance())
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.add(R.id.frameContainer, QuotesCategoryFragment.newInstance()).addToBackStack("QuotesCategoryFragment")
                 transaction.commit()
             }
             2 -> {
-                val transaction = getFragmentManager().beginTransaction();
+                val transaction = supportFragmentManager.beginTransaction()
                 transaction.add(R.id.frameContainer, HomeFragment.newInstance())
                 transaction.commit()
             }
