@@ -7,8 +7,6 @@ import android.util.Log
 import kkhura.com.quotes.app.homescreen.activity.HomeActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import java.util.concurrent.TimeUnit
-import com.google.common.io.Flushables.flush
-import kkhura.com.quotes.app.database.MyDatabase
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream

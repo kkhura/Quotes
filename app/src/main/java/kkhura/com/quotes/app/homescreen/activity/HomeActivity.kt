@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import kkhura.com.quotes.app.database.MyDatabase
 import kkhura.com.quotes.app.utility.BaseActivity
 
 import kotlinx.android.synthetic.main.activity_home.*

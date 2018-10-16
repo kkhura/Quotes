@@ -3,28 +3,18 @@ package kkhura.com.quotes.app.quotesHome.fragment
 import android.app.Fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.ContextWrapper
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.WorkerThread
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import kkhura.com.quotes.app.R
-import kkhura.com.quotes.app.database.DbWorkerThread
-import kkhura.com.quotes.app.database.MyDatabase
 import kkhura.com.quotes.app.homescreen.adapter.QuotesCategoryAdapter
 import kkhura.com.quotes.app.quotesHome.adapter.OnItemClicked
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 import kkhura.com.quotes.app.quotesHome.viewmodel.QuoteCategoryViewModel
 import kkhura.com.quotes.app.utility.BaseFragment
 import kotlinx.android.synthetic.main.fragment_quotes_category.*
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 
 /**
@@ -34,9 +24,6 @@ import java.io.OutputStream
  *
  */
 class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
-
-    private lateinit var quoteCategoryViewModel: QuoteCategoryViewModel
-    private lateinit var mDbWorkerThread: DbWorkerThread
 
     override fun itemClicked(postion: Int) {
         val transaction = activity!!.supportFragmentManager.beginTransaction();
@@ -57,12 +44,6 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
 
         }
-
-        mDbWorkerThread = DbWorkerThread("dbWorkerThread")
-        mDbWorkerThread.start()
-
-        copyDataBase()
-
 
         setHasOptionsMenu(true)
 
@@ -96,56 +77,24 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
         }
     }
 
-    private fun copyDataBase() {
-        val cw = ContextWrapper(activity!!.applicationContext)
-        var DB_PATH: String = "/data/data/kkhura.com.quotes.app" + "/databases/"
-        val buffer = ByteArray(1024)
-        var myOutput: OutputStream? = null
-        var length: Int
-        // Open your local db as the input stream
-        var myInput: InputStream? = null
-        try {
-            val DB_NAME = "quotes.db"
-            myInput = activity!!.applicationContext.getAssets().open(DB_NAME)
-            // transfer bytes from the inputfile to the
-            // outputfile
-            myOutput = FileOutputStream(DB_PATH + DB_NAME)
-            length = myInput!!.read(buffer)
-            while (length > 0) {
-                myOutput!!.write(buffer, 0, length)
-                length = myInput!!.read(buffer)
-            }
-            myOutput!!.close()
-            myOutput!!.flush()
-            myInput!!.close()
-            Log.i("Database",
-                    "New database has been copied to device!")
+
+    /* private fun fetchQuotesCategoryDataFromDb() {
+         var task = Runnable {
+             val mDB = MyDatabase.getInstance(activity!!.applicationContext)
+             val listQuotesCategoryModel: List<QuotesCategoryModel>? =
+                     mDB?.quotesCategoryDao()?.getAllData()
 
 
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-    }
-
-
-    private fun fetchQuotesCategoryDataFromDb() {
-        var task = Runnable {
-            val mDB = MyDatabase.getInstance(activity!!.applicationContext)
-            val listQuotesCategoryModel: List<QuotesCategoryModel>? =
-                    mDB?.quotesCategoryDao()?.getAllData()
-
-
-            mUiHandler.post({
-                if (listQuotesCategoryModel == null || listQuotesCategoryModel?.size == 0) {
-                    Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
-                } else {
-                    bindDataWithUi(listQuotesCategoryModel);
-                }
-            })
-        }
-        mDbWorkerThread.postTask(task)
-    }
+             mUiHandler.post({
+                 if (listQuotesCategoryModel == null || listQuotesCategoryModel?.size == 0) {
+                     Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
+                 } else {
+                     bindDataWithUi(listQuotesCategoryModel);
+                 }
+             })
+         }
+         mDbWorkerThread.postTask(task)
+     }*/
 
     private fun bindDataWithUi(listQuotesCategoryModel: List<QuotesCategoryModel>) {
         categoryList.addAll(listQuotesCategoryModel)
@@ -166,30 +115,16 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
         recycleView.adapter = QuotesCategoryAdapter(categoryList, this!!.activity!!, this, isGrid)
         onLayoutManagerGrid(isGrid)
 
-
-        fetchQuotesCategoryDataFromDb()
-
-        /*quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
-        quoteCategoryViewModel.getQuoteCategoryList().observe(
-                this,
-                Observer {
-                    @Override
-                    fun onChanged(listQuotesCategoryModel: List<QuotesCategoryModel>) {
-                        mUiHandler.post({
-                            if (listQuotesCategoryModel == null || listQuotesCategoryModel?.size == 0) {
-                                Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
-                            } else {
-                                bindDataWithUi(listQuotesCategoryModel);
-                            }
-                        })
-                    }
-                }
-        )*/
+        var quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
+        quoteCategoryViewModel.getQuoteCategoryList().observe(this, Observer { listQuotesCategoryModel ->
+            if (listQuotesCategoryModel != null) {
+                bindDataWithUi(listQuotesCategoryModel)
+            };
+        })
     }
 
-
     override fun onDestroy() {
-        MyDatabase.destroyInstance()
+//        MyDatabase.destroyInstance()
 //        mDbWorkerThread.quit()
         super.onDestroy()
     }

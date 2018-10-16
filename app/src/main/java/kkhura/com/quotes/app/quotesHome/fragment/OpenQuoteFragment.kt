@@ -43,7 +43,7 @@ class OpenQuoteFragment : BaseFragment() {
 //        mDbWorkerThread.start()
 
 
-        mDB = MyDatabase.getInstance(activity!!.applicationContext)
+//        mDB = MyDatabase.getInstance(activity!!.applicationContext)
 
     }
 
@@ -58,10 +58,10 @@ class OpenQuoteFragment : BaseFragment() {
         list = ArrayList();
         rvQuotes.layoutManager = LinearLayoutManager(activity)
         rvQuotes.adapter = QuotesAdapter(list, this!!.activity!!)
-        fetchQuotesCategoryDataFromDb()
+//        fetchQuotesCategoryDataFromDb()
     }
 
-    private fun fetchQuotesCategoryDataFromDb() {
+    /*private fun fetchQuotesCategoryDataFromDb() {
         var task = Runnable {
             val listQuoteModel: List<QuoteModel>? =
                     mDB?.quotesCategoryDao()?.findQuoteId(_id)
@@ -76,7 +76,7 @@ class OpenQuoteFragment : BaseFragment() {
             })
         }
 //        mDbWorkerThread.postTask(task)
-    }
+    }*/
 
     private fun bindDataWithUi(listQuoteModel: List<QuoteModel>) {
         list!!.addAll(listQuoteModel)

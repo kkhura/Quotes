@@ -12,7 +12,7 @@ public class QuoteCategoryViewModel : AndroidViewModel {
 
     constructor(application: Application) : super(application) {
         quotesCatResprository = QuotesCatResprository(application)
-        quoteCategoryList = quotesCatResprository.getAll()
+        quoteCategoryList = quotesCatResprository.getQuoteCategoryList()
     }
 
     fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>> {

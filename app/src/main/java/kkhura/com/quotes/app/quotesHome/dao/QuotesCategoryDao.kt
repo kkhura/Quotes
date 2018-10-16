@@ -13,11 +13,11 @@ import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 @Dao
 interface QuotesCategoryDao {
 
-    @get:Query("SELECT * from category")
-    val listCategory: List<QuotesCategoryModel>
+   /* @get:Query("SELECT * from category")
+    val listCategory: List<QuotesCategoryModel>*/
 
-    @get:Query("SELECT * from quotes")
-    val listQuote: List<QuoteModel>
+    /*@get:Query("SELECT * from quotes")
+    val listQuote: List<QuoteModel>*/
 
     @Insert
     fun insert(category: QuotesCategoryModel)
@@ -26,8 +26,8 @@ interface QuotesCategoryDao {
     fun getAllData(): List<QuotesCategoryModel>
 
     @Query("SELECT * FROM category")
-    fun getAll(): LiveData<List<QuotesCategoryModel>>
+    fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>>
 
-    @Query("SELECT * FROM quotes WHERE category_id = :id")
-    fun findQuoteId(id: Int): List<QuoteModel>
+    /*@Query("SELECT * FROM quotes WHERE category_id = :id")
+    fun findQuoteId(id: Int): List<QuoteModel>*/
 }
