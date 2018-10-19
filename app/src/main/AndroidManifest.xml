@@ -9,7 +9,7 @@
     <application android:name=".MyApplication">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login"/>
         <activity
             android:name=".homescreen.activity.HomeActivity"
             android:label="@string/title_activity_home"
@@ -23,7 +23,7 @@
         <activity
             android:name=".SplashActivity"
             android:label="@string/title_activity_splash"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

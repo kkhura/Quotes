@@ -13,6 +13,7 @@ abstract class MyDatabase : RoomDatabase() {
 
     abstract fun quotesCategoryDao(): QuotesCategoryDao
 
+
     companion object {
 
         @JvmField

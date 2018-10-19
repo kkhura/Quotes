@@ -9,7 +9,7 @@ import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 
 class QuotesCatResprository {
     private var quoteCategoryDao: QuotesCategoryDao
-    private lateinit var allCategory: LiveData<List<QuotesCategoryModel>>
+    private var allCategory: LiveData<List<QuotesCategoryModel>>
 
     constructor(application: Application) {
         var myDatabase: MyDatabase = DatabaseCopier.getInstance(application)!!.roomDatabase
@@ -17,8 +17,8 @@ class QuotesCatResprository {
         allCategory = quoteCategoryDao.getQuoteCategoryList()
     }
 
-    public fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>> {
-        return allCategory;
+    fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>> {
+        return allCategory
 
     }
 }

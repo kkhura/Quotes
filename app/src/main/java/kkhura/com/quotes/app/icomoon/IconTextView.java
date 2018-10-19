@@ -1,14 +1,14 @@
 package kkhura.com.quotes.app.icomoon;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 
 /**
  * Created by xmb2nc on 10-04-2016.
  */
-public class IconTextView extends TextView {
+public class IconTextView extends AppCompatTextView {
 
     public IconTextView(Context context) {
         super(context);

@@ -1,14 +1,14 @@
 package kkhura.com.quotes.app.icomoon;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
-import android.widget.Button;
 
 
 /**
  * Created by xmb2nc on 10-04-2016.
  */
-public class IconButton  extends Button {
+public class IconButton  extends AppCompatButton {
 
     public IconButton(Context context) {
         super(context);

@@ -6,8 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import kkhura.com.quotes.app.utility.BaseActivity
 
-import kotlinx.android.synthetic.main.activity_home.*
-
 class HomeActivity : BaseActivity() {
 
     companion object {
@@ -22,7 +20,7 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         ViewModelProviders.of(this)
-        selectItem(1);
+        selectItem(1)
 
     }
 

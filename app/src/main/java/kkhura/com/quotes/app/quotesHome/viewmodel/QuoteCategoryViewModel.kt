@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData
 import kkhura.com.quotes.app.quotesHome.Reprository.QuotesCatResprository
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 
-public class QuoteCategoryViewModel : AndroidViewModel {
+class QuoteCategoryViewModel : AndroidViewModel {
     private var quotesCatResprository: QuotesCatResprository
     private var quoteCategoryList: LiveData<List<QuotesCategoryModel>>
 
@@ -16,7 +16,7 @@ public class QuoteCategoryViewModel : AndroidViewModel {
     }
 
     fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>> {
-        return quoteCategoryList;
+        return quoteCategoryList
     }
 
 }

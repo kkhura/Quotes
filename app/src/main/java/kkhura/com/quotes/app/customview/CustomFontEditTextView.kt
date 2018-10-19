@@ -121,13 +121,19 @@ class CustomFontEditTextView : TextInputLayout {
 
         val gravity = attributeArray.getInt(R.styleable.customFontTextView_gravity, -1)
 
-        if (gravity == GRAVITY_CENTER) {
-            editText!!.gravity = Gravity.START
-        } else if (gravity == GRAVITY_START) {
-            editText!!.gravity = Gravity.START
-        } else if (gravity == GRAVITY_END) {
-            editText!!.gravity = Gravity.END
+        when (gravity) {
+            GRAVITY_CENTER -> editText!!.gravity = Gravity.START
+            GRAVITY_START -> editText!!.gravity = Gravity.START
+            GRAVITY_END -> editText!!.gravity = Gravity.END
         }
+
+        //setting number of lines
+        //setting maxlength
+
+        //setting single line
+
+
+        //setting text size
 
         //setting number of lines
         //setting maxlength
@@ -210,10 +216,6 @@ class CustomFontEditTextView : TextInputLayout {
         }
     }
 
-    override fun setFocusableInTouchMode(focusableInTouchMode: Boolean) {
-        super.setFocusableInTouchMode(focusableInTouchMode)
-    }
-
     private fun applyCustomFont(context: Context, attrs: AttributeSet?) {
         val attributeArray = context.obtainStyledAttributes(attrs, R.styleable.customFontTextView)
         val fontName = attributeArray.getString(R.styleable.customFontTextView_fontName)
@@ -229,15 +231,15 @@ class CustomFontEditTextView : TextInputLayout {
             FontCache.getTypeface("sans/OpenSans-Regular.ttf", context)
         } else FontCache.getTypeface("sans/OpenSans-Semibold.ttf", context)
         if(textStyle.equals(context.getString(R.string.font_bold))){
-            FontCache.getTypeface("sans/OpenSans-Bold.ttf", context);
+            FontCache.getTypeface("sans/OpenSans-Bold.ttf", context)
         } else if(textStyle.equals(context.getString(R.string.font_semibold))){
-            return FontCache.getTypeface("sans/OpenSans-Semibold.ttf", context);
+            return FontCache.getTypeface("sans/OpenSans-Semibold.ttf", context)
         } else if(textStyle.equals(context.getString(R.string.font_light))){
-            return FontCache.getTypeface("sans/OpenSans-Light.ttf", context);
+            return FontCache.getTypeface("sans/OpenSans-Light.ttf", context)
         } else if(textStyle.equals(context.getString(R.string.font_regular))){
-            return FontCache.getTypeface("sans/OpenSans-Regular.ttf", context);
+            return FontCache.getTypeface("sans/OpenSans-Regular.ttf", context)
         }else if(textStyle.equals(context.getString(R.string.font_italic))){
-            return FontCache.getTypeface("sans/OpenSans-Italic.ttf", context);
+            return FontCache.getTypeface("sans/OpenSans-Italic.ttf", context)
         }
 
     }

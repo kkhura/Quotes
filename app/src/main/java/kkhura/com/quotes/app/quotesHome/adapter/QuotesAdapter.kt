@@ -11,8 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.R
+import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.utility.Utils
 import kotlinx.android.synthetic.main.row_quote.view.*
 import java.io.File
@@ -29,17 +29,17 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val get = items!!.get(position)
-        holder.tvQuote.setText(get.quote)
-        holder.tvCopy.setOnClickListener(View.OnClickListener {
+        holder.tvQuote.text = get.quote
+        holder.tvCopy.setOnClickListener({
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText(context.getText(R.string.app_name), holder.tvQuote.text.trim())
-            clipboard.setPrimaryClip(clip)
+            clipboard.primaryClip = clip
             Toast.makeText(context, context.getText(R.string.text_copied), Toast.LENGTH_SHORT).show()
         })
-        holder.tvSave.setOnClickListener(View.OnClickListener {
+        holder.tvSave.setOnClickListener({
             storeImage(Utils.getBitmapFromView(holder.cardQuote))
         })
-        holder.tvShare.setOnClickListener(View.OnClickListener {
+        holder.tvShare.setOnClickListener({
             val shareBody = holder.tvQuote.text
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -57,7 +57,7 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
         val filename = "image_$timeStamp.jpg"
         try {
             val path = Environment.getExternalStorageDirectory().toString()
-            val pictureFile = File(path + File.separator + context.getString(R.string.app_name) + File.separator , filename)
+            val pictureFile = File(path + File.separator + context.getString(R.string.app_name) + File.separator, filename)
             if (!pictureFile.exists()) {
                 pictureFile.createNewFile()
             }

@@ -2,21 +2,16 @@ package kkhura.com.quotes.app.quotesHome.fragment
 
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import kkhura.com.quotes.app.R
-import kkhura.com.quotes.app.database.DbWorkerThread
-import kkhura.com.quotes.app.database.MyDatabase
 import kkhura.com.quotes.app.quotesHome.adapter.QuotesAdapter
 import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.utility.BaseFragment
 import kotlinx.android.synthetic.main.fragment_open_quote.*
-import kotlinx.android.synthetic.main.fragment_quotes_category.*
 
 private const val CATEGORY_ID: String = "CATEGORY_ID"
 
@@ -28,9 +23,6 @@ private const val CATEGORY_ID: String = "CATEGORY_ID"
  */
 class OpenQuoteFragment : BaseFragment() {
     private var list: ArrayList<QuoteModel>? = null
-    private var mDB: MyDatabase? = null
-//    private lateinit var mDbWorkerThread: DbWorkerThread
-    private val mUiHandler = Handler()
     private var _id: Int = 0
 
 
@@ -39,26 +31,25 @@ class OpenQuoteFragment : BaseFragment() {
         arguments?.let {
             _id = it.getInt(CATEGORY_ID)
         }
-//        mDbWorkerThread = DbWorkerThread("dbWorkerThread")
-//        mDbWorkerThread.start()
-
-
-//        mDB = MyDatabase.getInstance(activity!!.applicationContext)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_open_quote, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        list = ArrayList();
+        list = ArrayList()
         rvQuotes.layoutManager = LinearLayoutManager(activity)
-        rvQuotes.adapter = QuotesAdapter(list, this!!.activity!!)
-//        fetchQuotesCategoryDataFromDb()
+        rvQuotes.adapter = QuotesAdapter(list, this.activity!!)
+
+        /*var quoteViewModel = ViewModelProviders.of(this).get(QuoteModel::class.java)
+        quoteViewModel.getQuoteCategoryList().observe(this, Observer { listQuoteModel ->
+            if (listQuoteModel != null) {
+                bindDataWithUi(listQuoteModel)
+            }
+        })*/
     }
 
     /*private fun fetchQuotesCategoryDataFromDb() {

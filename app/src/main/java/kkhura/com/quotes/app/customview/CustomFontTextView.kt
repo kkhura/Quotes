@@ -2,11 +2,11 @@ package kkhura.com.quotes.app.customview
 
 import android.content.Context
 import android.graphics.Typeface
+import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
-import android.widget.TextView
 import kkhura.com.quotes.app.R
 
-class CustomFontTextView : TextView {
+class CustomFontTextView : AppCompatTextView{
 
 
     constructor(context: Context) : super(context) {
@@ -38,17 +38,13 @@ class CustomFontTextView : TextView {
         return if (textStyle == null) {
             FontCache.getTypeface("sans/OpenSans-Regular.ttf", context)
         } else FontCache.getTypeface("sans/OpenSans-Semibold.ttf", context)
-        if(textStyle.equals(context.getString(R.string.font_bold))){
-			FontCache.getTypeface("sans/OpenSans-Bold.ttf", context);
-		} else if(textStyle.equals(context.getString(R.string.font_semibold))){
-			return FontCache.getTypeface("sans/OpenSans-Semibold.ttf", context);
-		} else if(textStyle.equals(context.getString(R.string.font_light))){
-			return FontCache.getTypeface("sans/OpenSans-Light.ttf", context);
-		} else if(textStyle.equals(context.getString(R.string.font_regular))){
-			return FontCache.getTypeface("sans/OpenSans-Regular.ttf", context);
-		}else if(textStyle.equals(context.getString(R.string.font_italic))){
-			return FontCache.getTypeface("sans/OpenSans-Italic.ttf", context);
-		}
+        when {
+            textStyle.equals(context.getString(R.string.font_bold)) -> FontCache.getTypeface("sans/OpenSans-Bold.ttf", context)
+            textStyle.equals(context.getString(R.string.font_semibold)) -> return FontCache.getTypeface("sans/OpenSans-Semibold.ttf", context)
+            textStyle.equals(context.getString(R.string.font_light)) -> return FontCache.getTypeface("sans/OpenSans-Light.ttf", context)
+            textStyle.equals(context.getString(R.string.font_regular)) -> return FontCache.getTypeface("sans/OpenSans-Regular.ttf", context)
+            textStyle.equals(context.getString(R.string.font_italic)) -> return FontCache.getTypeface("sans/OpenSans-Italic.ttf", context)
+        }
     }
 
     companion object {

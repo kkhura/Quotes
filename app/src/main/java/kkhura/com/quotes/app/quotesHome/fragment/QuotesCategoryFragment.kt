@@ -4,7 +4,6 @@ import android.app.Fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
@@ -25,28 +24,34 @@ import kotlinx.android.synthetic.main.fragment_quotes_category.*
  */
 class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
-    override fun itemClicked(postion: Int) {
-        val transaction = activity!!.supportFragmentManager.beginTransaction();
-        transaction.add(R.id.frameContainer, OpenQuoteFragment.newInstance(categoryList.get(postion)._id!!))
-        transaction.commit()
-    }
-
-    private val mUiHandler = Handler()
-
-
     private val categoryList: ArrayList<QuotesCategoryModel> = ArrayList()
-
     private var isGrid: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
-
         }
-
         setHasOptionsMenu(true)
+    }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_quotes_category, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        isGrid = false
+
+        recycleView.adapter = QuotesCategoryAdapter(categoryList, this.activity!!, this, isGrid)
+        onLayoutManagerGrid(isGrid)
+
+        var quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
+        quoteCategoryViewModel.getQuoteCategoryList().observe(this, Observer { listQuotesCategoryModel ->
+            if (listQuotesCategoryModel != null) {
+                bindDataWithUi(listQuotesCategoryModel)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -78,55 +83,15 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
     }
 
 
-    /* private fun fetchQuotesCategoryDataFromDb() {
-         var task = Runnable {
-             val mDB = MyDatabase.getInstance(activity!!.applicationContext)
-             val listQuotesCategoryModel: List<QuotesCategoryModel>? =
-                     mDB?.quotesCategoryDao()?.getAllData()
-
-
-             mUiHandler.post({
-                 if (listQuotesCategoryModel == null || listQuotesCategoryModel?.size == 0) {
-                     Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
-                 } else {
-                     bindDataWithUi(listQuotesCategoryModel);
-                 }
-             })
-         }
-         mDbWorkerThread.postTask(task)
-     }*/
-
     private fun bindDataWithUi(listQuotesCategoryModel: List<QuotesCategoryModel>) {
         categoryList.addAll(listQuotesCategoryModel)
         recycleView.adapter.notifyDataSetChanged()
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_quotes_category, container, false)
-    }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        isGrid = false;
-
-        recycleView.adapter = QuotesCategoryAdapter(categoryList, this!!.activity!!, this, isGrid)
-        onLayoutManagerGrid(isGrid)
-
-        var quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
-        quoteCategoryViewModel.getQuoteCategoryList().observe(this, Observer { listQuotesCategoryModel ->
-            if (listQuotesCategoryModel != null) {
-                bindDataWithUi(listQuotesCategoryModel)
-            };
-        })
-    }
-
-    override fun onDestroy() {
-//        MyDatabase.destroyInstance()
-//        mDbWorkerThread.quit()
-        super.onDestroy()
+    override fun itemClicked(postion: Int) {
+        val transaction = activity!!.supportFragmentManager.beginTransaction()
+        transaction.add(R.id.frameContainer, OpenQuoteFragment.newInstance(categoryList.get(postion)._id!!))
+        transaction.commit()
     }
 
     companion object {

@@ -17,12 +17,12 @@ class QuotesCategoryAdapter(val items: ArrayList<QuotesCategoryModel>, val conte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.txtCategory.setText(items.get(position).name)
+        holder.txtCategory.text = items.get(position).name
         val mDrawableName = "category" + items.get(position)._id
-        val resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName())
+        val resID = context.resources.getIdentifier(mDrawableName, "drawable", context.packageName)
 
-        holder.ivProfile.setImageResource(resID);
-        holder.txtCategory.setOnClickListener(View.OnClickListener { listner.itemClicked(position) })
+        holder.ivProfile.setImageResource(resID)
+        holder.txtCategory.setOnClickListener({ listner.itemClicked(position) })
     }
 
     private fun setIsGrid(isGridView: Boolean) {

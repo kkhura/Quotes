@@ -4,6 +4,6 @@ import android.view.View;
 
 public interface DrawableClickListener {
 
-    public void onDrawableClick(View view);
-    public void onTextClick(View view);
+    void onDrawableClick(View view);
+    void onTextClick(View view);
 }
