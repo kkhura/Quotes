@@ -1,5 +1,6 @@
 package kkhura.com.quotes.app.homescreen.activity
 
+import android.app.FragmentManager
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
@@ -24,12 +25,12 @@ class HomeActivity : BaseActivity() {
 
     }
 
-    override fun onBackPressed() {
-        if (fragmentManager.backStackEntryCount === 1) {
-            finish()
+    /*override fun onBackPressed() {
+        if (supportFragmentManager.getBackStackEntryCount() > 0) {
+            supportFragmentManager.popBackStack();
         } else {
-            fragmentManager.popBackStack()
+            super.onBackPressed();
         }
-    }
+    }*/
 
 }

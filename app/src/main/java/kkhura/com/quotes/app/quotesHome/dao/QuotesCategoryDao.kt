@@ -21,5 +21,5 @@ interface QuotesCategoryDao {
     fun getQuoteCategoryList(): LiveData<List<QuotesCategoryModel>>
 
     @Query("SELECT * FROM quotes WHERE category_id = :id")
-    fun findQuoteId(id: Int): List<QuoteModel>
+    fun getQuotes(id: Int): LiveData<List<QuoteModel>>
 }

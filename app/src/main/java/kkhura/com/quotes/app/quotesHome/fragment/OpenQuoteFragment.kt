@@ -1,6 +1,8 @@
 package kkhura.com.quotes.app.quotesHome.fragment
 
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.quotesHome.adapter.QuotesAdapter
 import kkhura.com.quotes.app.quotesHome.model.QuoteModel
+import kkhura.com.quotes.app.quotesHome.viewmodel.QuoteCategoryViewModel
 import kkhura.com.quotes.app.utility.BaseFragment
 import kotlinx.android.synthetic.main.fragment_open_quote.*
 
@@ -44,30 +47,13 @@ class OpenQuoteFragment : BaseFragment() {
         rvQuotes.layoutManager = LinearLayoutManager(activity)
         rvQuotes.adapter = QuotesAdapter(list, this.activity!!)
 
-        /*var quoteViewModel = ViewModelProviders.of(this).get(QuoteModel::class.java)
-        quoteViewModel.getQuoteCategoryList().observe(this, Observer { listQuoteModel ->
-            if (listQuoteModel != null) {
-                bindDataWithUi(listQuoteModel)
+        var quoteCategoryViewModel: QuoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
+        quoteCategoryViewModel.getQuotes(_id).observe(this, Observer { listQuotes ->
+            if (listQuotes != null) {
+                bindDataWithUi(listQuotes)
             }
-        })*/
+        })
     }
-
-    /*private fun fetchQuotesCategoryDataFromDb() {
-        var task = Runnable {
-            val listQuoteModel: List<QuoteModel>? =
-                    mDB?.quotesCategoryDao()?.findQuoteId(_id)
-
-
-            mUiHandler.post({
-                if (listQuoteModel == null || listQuoteModel?.size == 0) {
-                    Toast.makeText(activity, "No data in cache..!!", Toast.LENGTH_SHORT).show()
-                } else {
-                    bindDataWithUi(listQuoteModel);
-                }
-            })
-        }
-//        mDbWorkerThread.postTask(task)
-    }*/
 
     private fun bindDataWithUi(listQuoteModel: List<QuoteModel>) {
         list!!.addAll(listQuoteModel)

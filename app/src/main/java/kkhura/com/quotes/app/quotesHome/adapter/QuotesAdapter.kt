@@ -57,10 +57,11 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
         val filename = "image_$timeStamp.jpg"
         try {
             val path = Environment.getExternalStorageDirectory().toString()
-            val pictureFile = File(path + File.separator + context.getString(R.string.app_name) + File.separator, filename)
-            if (!pictureFile.exists()) {
-                pictureFile.createNewFile()
+            val dirFile = File(path + File.separator + context.getString(R.string.app_name))
+            if (!dirFile.exists()) {
+                dirFile.mkdirs()
             }
+            val pictureFile = File(dirFile, filename)
 
             val fos = FileOutputStream(pictureFile)
             image.compress(Bitmap.CompressFormat.PNG, 90, fos)
@@ -69,9 +70,7 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
         } catch (e: FileNotFoundException) {
         } catch (e: IOException) {
         }
-
     }
-
 }
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -81,7 +80,6 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var tvCopy = view.tvCopy
     var tvEdit = view.tvEdit
     var tvShare = view.tvShare
-
 }
 
 interface OnItemClicked {

@@ -46,7 +46,7 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
         recycleView.adapter = QuotesCategoryAdapter(categoryList, this.activity!!, this, isGrid)
         onLayoutManagerGrid(isGrid)
 
-        var quoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
+        var quoteCategoryViewModel: QuoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
         quoteCategoryViewModel.getQuoteCategoryList().observe(this, Observer { listQuotesCategoryModel ->
             if (listQuotesCategoryModel != null) {
                 bindDataWithUi(listQuotesCategoryModel)
@@ -69,6 +69,10 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
                 R.id.menuGrid -> isGrid = true
                 R.id.menuList -> isGrid = false
             }
+            recycleView.adapter = QuotesCategoryAdapter(categoryList, this.activity!!, this, isGrid)
+            if (recycleView.adapter is QuotesCategoryAdapter) {
+                (recycleView.adapter as QuotesCategoryAdapter).isGrid = isGrid
+            }
             onLayoutManagerGrid(isGrid)
         }
         return super.onOptionsItemSelected(item)
@@ -89,8 +93,9 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
     }
 
     override fun itemClicked(postion: Int) {
-        val transaction = activity!!.supportFragmentManager.beginTransaction()
+        val transaction = fragmentManager!!.beginTransaction()
         transaction.add(R.id.frameContainer, OpenQuoteFragment.newInstance(categoryList.get(postion)._id!!))
+        transaction.addToBackStack(OpenQuoteFragment::class.java.name)
         transaction.commit()
     }
 

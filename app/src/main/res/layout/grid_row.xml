@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
     custom:cardBackgroundColor="@android:color/white">
 
     <LinearLayout
@@ -13,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <kkhura.com.quotes.app.customview.CircularImageView
@@ -26,10 +29,9 @@
 
         <kkhura.com.quotes.app.customview.CustomFontTextView
             android:id="@+id/txtCategory"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
     </LinearLayout>
 
 
