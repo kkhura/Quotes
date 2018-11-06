@@ -11,7 +11,7 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="title_activity_home">Home</string>
+    <string name="title_activity_home">Quotes</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">It\'s not about perfect. It\'s about effort. And when you bring that effort every single day, that\'s where transformation happens. That\'s how change occurs.</string>
@@ -31,4 +31,10 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="grid">Grid</string>
     <string name="list">List</string>
+    <string name="textSize">TextSize</string>
+    <string name="typeFace">TypeFace</string>
+    <string name="textColor">TextColor</string>
+    <string name="backGround">Background</string>
+    <string name="color_choose">Choose Color</string>
+    <string name="app_name">Quotes</string>
 </resources>

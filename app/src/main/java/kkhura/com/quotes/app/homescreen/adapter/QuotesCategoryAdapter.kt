@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kkhura.com.quotes.app.R
-import kkhura.com.quotes.app.quotesHome.adapter.OnItemClicked
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 import kotlinx.android.synthetic.main.row_category.view.*
 

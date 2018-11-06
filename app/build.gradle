@@ -42,4 +42,5 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
     kapt "android.arch.lifecycle:compiler:$archLifecycleVersion"
+    compile 'me.priyesh:chroma:1.0.2'
 }

@@ -5,18 +5,22 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kkhura.com.quotes.app.R
+import kkhura.com.quotes.app.quotesHome.adapter.OnItemClicked
 import kkhura.com.quotes.app.quotesHome.adapter.QuotesAdapter
 import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.quotesHome.viewmodel.QuoteCategoryViewModel
+import kkhura.com.quotes.app.utility.BaseActivity
 import kkhura.com.quotes.app.utility.BaseFragment
 import kotlinx.android.synthetic.main.fragment_open_quote.*
 
 private const val CATEGORY_ID: String = "CATEGORY_ID"
+private const val CATEGORY_TITLE: String = "CATEGORY_TITLE"
 
 /**
  * A simple [Fragment] subclass.
@@ -24,15 +28,24 @@ private const val CATEGORY_ID: String = "CATEGORY_ID"
  * create an instance of this fragment.
  *
  */
-class OpenQuoteFragment : BaseFragment() {
+class OpenQuoteFragment : BaseFragment(), OnItemClicked {
+    override fun itemClicked(postion: Int, text: String) {
+        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.add(R.id.frameContainer, EditQuoteFragment.newInstance(quoteTitle, text))
+        transaction.addToBackStack(EditQuoteFragment::class.java.name)
+        transaction.commit()
+    }
+
     private var list: ArrayList<QuoteModel>? = null
     private var _id: Int = 0
+    private var quoteTitle = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             _id = it.getInt(CATEGORY_ID)
+            quoteTitle = it.getString(CATEGORY_TITLE)
         }
     }
 
@@ -41,11 +54,16 @@ class OpenQuoteFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_open_quote, container, false)
     }
 
+    override fun onResume() {
+        (activity as BaseActivity).setToolBar(quoteTitle, true)
+        super.onResume()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         list = ArrayList()
         rvQuotes.layoutManager = LinearLayoutManager(activity)
-        rvQuotes.adapter = QuotesAdapter(list, this.activity!!)
+        rvQuotes.adapter = QuotesAdapter(list, this.activity!!, this)
 
         var quoteCategoryViewModel: QuoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
         quoteCategoryViewModel.getQuotes(_id).observe(this, Observer { listQuotes ->
@@ -65,15 +83,16 @@ class OpenQuoteFragment : BaseFragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
+         * @param _id
+         * @param name
          * @return A new instance of fragment OpenQuoteFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(_id: Int) =
+        fun newInstance(_id: Int, quoteTitle: String) =
                 OpenQuoteFragment().apply {
                     arguments = Bundle().apply {
                         putInt(CATEGORY_ID, _id)
+                        putString(CATEGORY_TITLE, quoteTitle)
                     }
                 }
     }

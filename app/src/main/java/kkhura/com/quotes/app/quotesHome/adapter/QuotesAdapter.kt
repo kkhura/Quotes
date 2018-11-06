@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kkhura.com.quotes.app.R
+import kkhura.com.quotes.app.R.*
 import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.utility.Utils
 import kotlinx.android.synthetic.main.row_quote.view.*
@@ -22,9 +22,9 @@ import java.io.IOException
 import java.util.*
 
 
-class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context, var listner: OnItemClicked) : RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.row_quote, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(layout.row_quote, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,9 +32,9 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
         holder.tvQuote.text = get.quote
         holder.tvCopy.setOnClickListener({
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText(context.getText(R.string.app_name), holder.tvQuote.text.trim())
+            val clip = ClipData.newPlainText(context.getText(string.app_name), holder.tvQuote.text.trim())
             clipboard.primaryClip = clip
-            Toast.makeText(context, context.getText(R.string.text_copied), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getText(string.text_copied), Toast.LENGTH_SHORT).show()
         })
         holder.tvSave.setOnClickListener({
             storeImage(Utils.getBitmapFromView(holder.cardQuote))
@@ -46,8 +46,9 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
                 putExtra(Intent.EXTRA_TEXT, shareBody)
                 type = "text/plain"
             }
-            context.startActivity(Intent.createChooser(sendIntent, context.resources.getText(R.string.share_using)))
+            context.startActivity(Intent.createChooser(sendIntent, context.resources.getText(string.share_using)))
         })
+        holder.tvEdit.setOnClickListener({ listner.itemClicked(position, holder.tvQuote.text.toString()) });
     }
 
     override fun getItemCount() = items!!.size
@@ -57,7 +58,7 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
         val filename = "image_$timeStamp.jpg"
         try {
             val path = Environment.getExternalStorageDirectory().toString()
-            val dirFile = File(path + File.separator + context.getString(R.string.app_name))
+            val dirFile = File(path + File.separator + context.getString(string.app_name))
             if (!dirFile.exists()) {
                 dirFile.mkdirs()
             }
@@ -66,7 +67,7 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context) : R
             val fos = FileOutputStream(pictureFile)
             image.compress(Bitmap.CompressFormat.PNG, 90, fos)
             fos.close()
-            Toast.makeText(context, context.getText(R.string.saved_as_image), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getText(string.saved_as_image), Toast.LENGTH_SHORT).show()
         } catch (e: FileNotFoundException) {
         } catch (e: IOException) {
         }
@@ -83,5 +84,5 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 }
 
 interface OnItemClicked {
-    fun itemClicked(postion: Int)
+    fun itemClicked(postion: Int, text: String)
 }

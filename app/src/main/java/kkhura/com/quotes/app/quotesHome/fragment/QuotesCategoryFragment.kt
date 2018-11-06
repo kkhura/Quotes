@@ -8,8 +8,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import kkhura.com.quotes.app.R
+import kkhura.com.quotes.app.homescreen.adapter.OnItemClicked
 import kkhura.com.quotes.app.homescreen.adapter.QuotesCategoryAdapter
-import kkhura.com.quotes.app.quotesHome.adapter.OnItemClicked
 import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 import kkhura.com.quotes.app.quotesHome.viewmodel.QuoteCategoryViewModel
 import kkhura.com.quotes.app.utility.BaseFragment
@@ -94,7 +94,7 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
     override fun itemClicked(postion: Int) {
         val transaction = fragmentManager!!.beginTransaction()
-        transaction.add(R.id.frameContainer, OpenQuoteFragment.newInstance(categoryList.get(postion)._id!!))
+        transaction.add(R.id.frameContainer, OpenQuoteFragment.newInstance(categoryList.get(postion)._id!!, categoryList.get(postion).name))
         transaction.addToBackStack(OpenQuoteFragment::class.java.name)
         transaction.commit()
     }

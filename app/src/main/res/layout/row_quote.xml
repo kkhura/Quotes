@@ -2,11 +2,11 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginBottom="5dp"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
     custom:cardBackgroundColor="@android:color/white">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -35,13 +35,15 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:orientation="horizontal"
-            android:weightSum="4">
+            android:weightSum="4"
+            custom:layout_constraintTop_toBottomOf="@+id/cardQuote">
 
             <kkhura.com.quotes.app.customview.CustomFontTextView
                 android:id="@+id/tvSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/save"
                 android:textSize="@dimen/btn_text_size" />
@@ -51,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/copy"
                 android:textSize="@dimen/btn_text_size" />
@@ -60,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/edit"
                 android:textSize="@dimen/btn_text_size" />
@@ -69,10 +73,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/share"
                 android:textSize="@dimen/btn_text_size" />
 
         </LinearLayout>
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -16,16 +16,21 @@ open class BaseActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
+    open fun setToolBar(title: String, isUpEnable: Boolean) {
+        supportActionBar!!.title = title
+        supportActionBar!!.setDisplayHomeAsUpEnabled(isUpEnable)
+    }
+
     open fun selectItem(position: Int) {
         when (position) {
             1 -> {
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.add(R.id.frameContainer, QuotesCategoryFragment.newInstance()).addToBackStack("QuotesCategoryFragment")
+                transaction.add(R.id.frameContainer, QuotesCategoryFragment.newInstance())
                 transaction.commit()
             }
             2 -> {
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.add(R.id.frameContainer, HomeFragment.newInstance())
+                transaction.replace(R.id.frameContainer, HomeFragment.newInstance())
                 transaction.commit()
             }
         }

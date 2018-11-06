@@ -1,10 +1,12 @@
 package kkhura.com.quotes.app.homescreen.activity
 
-import android.app.FragmentManager
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import kkhura.com.quotes.app.R
+import kkhura.com.quotes.app.quotesHome.fragment.QuotesCategoryFragment
 import kkhura.com.quotes.app.utility.BaseActivity
 
 class HomeActivity : BaseActivity() {
@@ -23,14 +25,29 @@ class HomeActivity : BaseActivity() {
         ViewModelProviders.of(this)
         selectItem(1)
 
+        supportFragmentManager.addOnBackStackChangedListener {
+            val fragment = supportFragmentManager.findFragmentById(R.id.frameContainer)
+            if (fragment != null)
+                updateTitle(fragment)
+        }
+
     }
 
-    /*override fun onBackPressed() {
+    override fun onBackPressed() {
         if (supportFragmentManager.getBackStackEntryCount() > 0) {
             supportFragmentManager.popBackStack();
         } else {
-            super.onBackPressed();
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
-    }*/
+    }
+
+    private fun updateTitle(fragment: Fragment?) {
+        if (fragment is QuotesCategoryFragment) {
+            setToolBar(getString(R.string.app_name), false)
+        }
+    }
 
 }
