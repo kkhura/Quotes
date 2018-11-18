@@ -11,7 +11,6 @@ import kkhura.com.quotes.app.quotesHome.model.QuotesCategoryModel
 class QuotesCatResprository {
     private var quoteCategoryDao: QuotesCategoryDao
     private var allCategory: LiveData<List<QuotesCategoryModel>>
-    private lateinit var quotes: LiveData<List<QuoteModel>>
 
 
     constructor(application: Application) {
