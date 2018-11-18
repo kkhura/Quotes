@@ -1,7 +1,7 @@
 package kkhura.com.quotes.app.quotesHome.Reprository
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import kkhura.com.quotes.app.database.DatabaseCopier
 import kkhura.com.quotes.app.database.MyDatabase
 import kkhura.com.quotes.app.quotesHome.dao.QuotesCategoryDao
