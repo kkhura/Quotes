@@ -2,7 +2,7 @@ package kkhura.com.quotes.app
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import kkhura.com.quotes.app.homescreen.activity.HomeActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import java.util.concurrent.TimeUnit

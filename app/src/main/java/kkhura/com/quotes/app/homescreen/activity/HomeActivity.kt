@@ -1,10 +1,11 @@
 package kkhura.com.quotes.app.homescreen.activity
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.util.Log
+import androidx.fragment.app.Fragment
 import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.quotesHome.fragment.QuotesCategoryFragment
 import kkhura.com.quotes.app.utility.BaseActivity
@@ -32,7 +33,7 @@ class HomeActivity : BaseActivity() {
         }
 
     }
-
+    
     override fun onBackPressed() {
         if (supportFragmentManager.getBackStackEntryCount() > 0) {
             supportFragmentManager.popBackStack();
@@ -44,7 +45,7 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    private fun updateTitle(fragment: Fragment?) {
+    private fun updateTitle(fragment: androidx.fragment.app.Fragment?) {
         if (fragment is QuotesCategoryFragment) {
             setToolBar(getString(R.string.app_name), false)
         }

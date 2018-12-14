@@ -5,10 +5,10 @@ import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.design.widget.TextInputEditText
-import android.support.design.widget.TextInputLayout
-import android.support.v7.widget.AppCompatEditText
+import androidx.annotation.RequiresApi
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import androidx.appcompat.widget.AppCompatEditText
 import android.text.*
 import android.text.method.KeyListener
 import android.text.method.PasswordTransformationMethod
@@ -204,7 +204,7 @@ class CustomFontEditTextView : TextInputLayout {
             editText!!.transformationMethod = null
             editText!!.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_hide_password, 0)
         }
-        postDelayed({ editText!!.setSelection(editText!!.text.length) }, 80)
+        postDelayed({ editText!!.setSelection(editText!!.text!!.length) }, 80)
     }
 
 

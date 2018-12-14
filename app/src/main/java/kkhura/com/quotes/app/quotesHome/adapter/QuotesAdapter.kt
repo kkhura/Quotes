@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Environment
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +22,7 @@ import java.io.IOException
 import java.util.*
 
 
-class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context, var listner: OnItemClicked) : RecyclerView.Adapter<ViewHolder>() {
+class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context, var listner: OnItemClicked) : androidx.recyclerview.widget.RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(layout.row_quote, parent, false))
     }
@@ -74,7 +74,7 @@ class QuotesAdapter(val items: ArrayList<QuoteModel>?, val context: Context, var
     }
 }
 
-class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
     val tvQuote = view.tvQuote
     var cardQuote = view.cardQuote
     var tvSave = view.tvSave

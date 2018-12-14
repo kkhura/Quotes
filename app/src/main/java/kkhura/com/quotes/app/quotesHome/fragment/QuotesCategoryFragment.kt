@@ -1,11 +1,11 @@
 package kkhura.com.quotes.app.quotesHome.fragment
 
 import android.app.Fragment
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.*
 import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.homescreen.adapter.OnItemClicked
@@ -52,6 +52,12 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
                 bindDataWithUi(listQuotesCategoryModel)
             }
         })
+
+
+
+        for((intex,value) in categoryList.withIndex()){
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -80,16 +86,16 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
     private fun onLayoutManagerGrid(isGridLayout: Boolean) {
         if (isGridLayout) {
-            recycleView.layoutManager = GridLayoutManager(activity, 2)
+            recycleView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, 2)
         } else {
-            recycleView.layoutManager = LinearLayoutManager(activity)
+            recycleView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         }
     }
 
 
     private fun bindDataWithUi(listQuotesCategoryModel: List<QuotesCategoryModel>) {
         categoryList.addAll(listQuotesCategoryModel)
-        recycleView.adapter.notifyDataSetChanged()
+        recycleView.adapter!!.notifyDataSetChanged()
     }
 
     override fun itemClicked(postion: Int) {

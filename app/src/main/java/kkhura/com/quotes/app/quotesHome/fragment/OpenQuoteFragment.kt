@@ -1,12 +1,12 @@
 package kkhura.com.quotes.app.quotesHome.fragment
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +30,7 @@ private const val CATEGORY_TITLE: String = "CATEGORY_TITLE"
  */
 class OpenQuoteFragment : BaseFragment(), OnItemClicked {
     override fun itemClicked(postion: Int, text: String) {
-        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        val transaction: androidx.fragment.app.FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.add(R.id.frameContainer, EditQuoteFragment.newInstance(quoteTitle, text))
         transaction.addToBackStack(EditQuoteFragment::class.java.name)
         transaction.commit()
@@ -62,7 +62,7 @@ class OpenQuoteFragment : BaseFragment(), OnItemClicked {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         list = ArrayList()
-        rvQuotes.layoutManager = LinearLayoutManager(activity)
+        rvQuotes.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         rvQuotes.adapter = QuotesAdapter(list, this.activity!!, this)
 
         var quoteCategoryViewModel: QuoteCategoryViewModel = ViewModelProviders.of(this).get(QuoteCategoryViewModel::class.java)
@@ -75,7 +75,7 @@ class OpenQuoteFragment : BaseFragment(), OnItemClicked {
 
     private fun bindDataWithUi(listQuoteModel: List<QuoteModel>) {
         list!!.addAll(listQuoteModel)
-        rvQuotes.adapter.notifyDataSetChanged()
+        rvQuotes.adapter!!.notifyDataSetChanged()
     }
 
     companion object {

@@ -1,7 +1,7 @@
 package kkhura.com.quotes.app.icomoon;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 
