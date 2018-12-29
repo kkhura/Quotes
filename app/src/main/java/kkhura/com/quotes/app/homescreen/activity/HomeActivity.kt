@@ -1,14 +1,13 @@
 package kkhura.com.quotes.app.homescreen.activity
 
-import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.quotesHome.fragment.QuotesCategoryFragment
 import kkhura.com.quotes.app.utility.BaseActivity
+
 
 class HomeActivity : BaseActivity() {
 
@@ -33,7 +32,7 @@ class HomeActivity : BaseActivity() {
         }
 
     }
-    
+
     override fun onBackPressed() {
         if (supportFragmentManager.getBackStackEntryCount() > 0) {
             supportFragmentManager.popBackStack();

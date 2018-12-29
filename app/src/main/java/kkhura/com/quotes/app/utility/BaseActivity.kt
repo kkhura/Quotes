@@ -1,8 +1,13 @@
 package kkhura.com.quotes.app.utility
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import kkhura.com.quotes.app.quotesHome.fragment.QuotesCategoryFragment
 import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.homescreen.fragment.HomeFragment
@@ -14,11 +19,54 @@ open class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        var mAdView = findViewById<AdView>(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+        mAdView.adListener = object: AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                Log.d("TAG","")
+            }
+
+            override fun onAdFailedToLoad(errorCode : Int) {
+                // Code to be executed when an ad request fails.
+                Log.d("TAG","")
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                Log.d("TAG","")
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                Log.d("TAG","")
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+                Log.d("TAG","")
+            }
+        }
     }
 
     open fun setToolBar(title: String, isUpEnable: Boolean) {
         supportActionBar!!.title = title
         supportActionBar!!.setDisplayHomeAsUpEnabled(isUpEnable)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        } else {
+            // Do some other things to other menu
+            return super.onOptionsItemSelected(item)
+        }
     }
 
     open fun selectItem(position: Int) {

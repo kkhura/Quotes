@@ -4,12 +4,10 @@ package kkhura.com.quotes.app.quotesHome.fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.quotesHome.adapter.OnItemClicked
 import kkhura.com.quotes.app.quotesHome.adapter.QuotesAdapter
@@ -47,6 +45,7 @@ class OpenQuoteFragment : BaseFragment(), OnItemClicked {
             _id = it.getInt(CATEGORY_ID)
             quoteTitle = it.getString(CATEGORY_TITLE)
         }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

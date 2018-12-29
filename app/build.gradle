@@ -6,22 +6,30 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
 
-
-
     defaultConfig {
-        applicationId "kkhura.com.quotes.app"
+        applicationId "com.kkhura.quotes"
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 1
+        versionCode 2
         versionName "1.0"
+        multiDexEnabled true
+    }
 
-
+    signingConfigs {
+        release {
+            keyAlias 'kkhura'
+            keyPassword 'kkhuraDev'
+            storePassword 'kkhuraDev'
+            storeFile file('D:/SourceCode/keystore/release.jks')
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.release
         }
     }
 
@@ -31,7 +39,6 @@ dependencies {
     implementation project(':base')
     implementation "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-
     implementation 'com.google.android.material:material:1.1.0-alpha01'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
@@ -40,10 +47,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'androidx.room:room-runtime:2.1.0-alpha02'
     kapt 'androidx.room:room-compiler:2.1.0-alpha02'
-//    implementation "android.arch.persistence.room:rxjava2:$room_version"
+    //    implementation "android.arch.persistence.room:rxjava2:$room_version"
     implementation 'androidx.room:room-guava:2.1.0-alpha02'
     // Lifecycle components
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
     compile 'me.priyesh:chroma:1.0.2'
+    implementation 'com.google.android.gms:play-services-ads:17.1.2'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-ads:17.1.2'
 }

@@ -26,6 +26,7 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
 
     private val categoryList: ArrayList<QuotesCategoryModel> = ArrayList()
     private var isGrid: Boolean = false
+    private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,9 +65,20 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
         if (inflater != null) {
             inflater.inflate(R.menu.menu_format, menu)
         }
+        this.menu= menu!!;
+        invalidateOptionMenu(menu)
 
         super.onCreateOptionsMenu(menu, inflater)
+    }
 
+    private fun invalidateOptionMenu(menu: Menu?) {
+        if(isGrid){
+            menu!!.findItem(R.id.menuGrid).setVisible(false)
+            menu!!.findItem(R.id.menuList).setVisible(true)
+        }else{
+            menu!!.findItem(R.id.menuGrid).setVisible(true)
+            menu!!.findItem(R.id.menuList).setVisible(false)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -80,6 +92,9 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
                 (recycleView.adapter as QuotesCategoryAdapter).isGrid = isGrid
             }
             onLayoutManagerGrid(isGrid)
+
+            invalidateOptionMenu(menu)
+
         }
         return super.onOptionsItemSelected(item)
     }
