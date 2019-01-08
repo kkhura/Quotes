@@ -18,68 +18,113 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="@dimen/text_dimen_top"
-            android:paddingEnd="@dimen/text_dimen_start"
             android:paddingStart="@dimen/text_dimen_start"
             android:paddingTop="@dimen/text_dimen_top"
-            tools:text="@string/hello_blank_fragment"
-            android:textSize="@dimen/quote_text" />
+            android:paddingEnd="@dimen/text_dimen_start"
+            android:paddingBottom="@dimen/text_dimen_top"
+            android:textSize="@dimen/quote_text"
+            tools:text="@string/hello_blank_fragment" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/cardQuote"
+        android:layout_marginTop="2dp"
         custom:cardElevation="10dp">
 
-        <LinearLayout
-            android:id="@+id/layoutFooter"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:background="@android:color/white">
 
             <kkhura.com.quotes.app.customview.CustomFontTextView
                 android:id="@+id/tvTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/textSize"
-                android:textSize="@dimen/btn_text_size" />
+                android:textSize="@dimen/btn_text_size"
+                custom:layout_constraintBaseline_toBaselineOf="@+id/tvTypeFace"
+                custom:layout_constraintEnd_toStartOf="@+id/tvTypeFace"
+                custom:layout_constraintStart_toStartOf="parent" />
 
             <kkhura.com.quotes.app.customview.CustomFontTextView
                 android:id="@+id/tvTypeFace"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/typeFace"
-                android:textSize="@dimen/btn_text_size" />
+                android:textSize="@dimen/btn_text_size"
+                custom:layout_constraintEnd_toStartOf="@+id/tvTextColor"
+                custom:layout_constraintStart_toEndOf="@+id/tvTextSize"
+                custom:layout_constraintTop_toBottomOf="parent" />
 
             <kkhura.com.quotes.app.customview.CustomFontTextView
                 android:id="@+id/tvTextColor"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/textColor"
-                android:textSize="@dimen/btn_text_size" />
+                android:textSize="@dimen/btn_text_size"
+                custom:layout_constraintBaseline_toBaselineOf="@+id/tvTypeFace"
+                custom:layout_constraintEnd_toEndOf="parent"
+                custom:layout_constraintStart_toEndOf="@+id/tvTypeFace" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_view1"
+        custom:cardElevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
 
             <kkhura.com.quotes.app.customview.CustomFontTextView
                 android:id="@+id/tvBackground"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/backGround"
-                android:textSize="@dimen/btn_text_size" />
+                android:textSize="@dimen/btn_text_size"
+                custom:layout_constraintBaseline_toBaselineOf="@+id/tvSave"
+                custom:layout_constraintEnd_toStartOf="@+id/tvSave"
+                custom:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/save"
+                android:textSize="@dimen/btn_text_size"
+                custom:layout_constraintEnd_toStartOf="@+id/tvShare"
+                custom:layout_constraintStart_toEndOf="@+id/tvBackground"
+                custom:layout_constraintTop_toBottomOf="parent" />
+
+            <kkhura.com.quotes.app.customview.CustomFontTextView
+                android:id="@+id/tvShare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/share"
+                android:textSize="@dimen/btn_text_size"
+                custom:layout_constraintBaseline_toBaselineOf="@+id/tvSave"
+                custom:layout_constraintEnd_toEndOf="parent"
+                custom:layout_constraintStart_toEndOf="@+id/tvSave" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

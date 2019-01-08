@@ -53,49 +53,41 @@ class QuotesCategoryFragment : BaseFragment(), OnItemClicked {
                 bindDataWithUi(listQuotesCategoryModel)
             }
         })
-
-
-
-        for((intex,value) in categoryList.withIndex()){
-
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         if (inflater != null) {
             inflater.inflate(R.menu.menu_format, menu)
         }
-        this.menu= menu!!;
+        this.menu = menu!!;
         invalidateOptionMenu(menu)
 
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun invalidateOptionMenu(menu: Menu?) {
-        if(isGrid){
+        if (isGrid) {
             menu!!.findItem(R.id.menuGrid).setVisible(false)
             menu!!.findItem(R.id.menuList).setVisible(true)
-        }else{
+        } else {
             menu!!.findItem(R.id.menuGrid).setVisible(true)
             menu!!.findItem(R.id.menuList).setVisible(false)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item != null) {
-            when (item.itemId) {
-                R.id.menuGrid -> isGrid = true
-                R.id.menuList -> isGrid = false
-            }
-            recycleView.adapter = QuotesCategoryAdapter(categoryList, this.activity!!, this, isGrid)
-            if (recycleView.adapter is QuotesCategoryAdapter) {
-                (recycleView.adapter as QuotesCategoryAdapter).isGrid = isGrid
-            }
-            onLayoutManagerGrid(isGrid)
-
-            invalidateOptionMenu(menu)
-
+        when (item!!.itemId) {
+            R.id.menuGrid -> isGrid = true
+            R.id.menuList -> isGrid = false
         }
+        recycleView.adapter = QuotesCategoryAdapter(categoryList, this.activity!!, this, isGrid)
+        if (recycleView.adapter is QuotesCategoryAdapter) {
+            (recycleView.adapter as QuotesCategoryAdapter).isGrid = isGrid
+        }
+        onLayoutManagerGrid(isGrid)
+
+        invalidateOptionMenu(menu)
+
         return super.onOptionsItemSelected(item)
     }
 

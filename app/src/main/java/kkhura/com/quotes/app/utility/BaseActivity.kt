@@ -1,10 +1,17 @@
 package kkhura.com.quotes.app.utility
 
+import android.app.Dialog
+import android.content.DialogInterface
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -20,7 +27,7 @@ open class BaseActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        var mAdView = findViewById<AdView>(R.id.adView)
+        /*var mAdView = findViewById<AdView>(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
@@ -51,7 +58,7 @@ open class BaseActivity : AppCompatActivity() {
                 // to the app after tapping on an ad.
                 Log.d("TAG","")
             }
-        }
+        }*/
     }
 
     open fun setToolBar(title: String, isUpEnable: Boolean) {

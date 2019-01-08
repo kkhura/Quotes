@@ -1,9 +1,11 @@
 package kkhura.com.quotes.app.quotesHome.adapter
 
+import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Environment
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kkhura.com.quotes.app.R.*
 import kkhura.com.quotes.app.quotesHome.model.QuoteModel
 import kkhura.com.quotes.app.utility.Utils

@@ -48,11 +48,11 @@ object Utils {
     }
 
     fun getBitmapFromView(view: View): Bitmap {
-        val returnedBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888)
         val canvas = Canvas(returnedBitmap)
-        val bgDrawable = view.background
+        val bgDrawable = view.getBackground()
         if (bgDrawable != null) {
-            bgDrawable.draw(canvas)
+            bgDrawable!!.draw(canvas)
         } else {
             canvas.drawColor(Color.WHITE)
         }
