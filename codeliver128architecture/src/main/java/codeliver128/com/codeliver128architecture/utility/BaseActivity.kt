@@ -1,4 +1,4 @@
-package kkhura.com.quotes.app.utility
+package codeliver128.com.codeliver128architecture
 
 import android.app.Dialog
 import android.content.Context

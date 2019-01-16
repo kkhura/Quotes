@@ -37,7 +37,7 @@
     <string name="backGround">Background</string>
     <string name="color_choose">Choose Color</string>
     <string name="app_name">Quotes</string>
-
+    <string name="ad_unit_id">ca-app-pub-2695810809417290/2188075686</string>
     <string name="ad_mob_id">ca-app-pub-2695810809417290~9481332686</string>
     <string name="permission_required">Need permission to store the file</string>
 </resources>

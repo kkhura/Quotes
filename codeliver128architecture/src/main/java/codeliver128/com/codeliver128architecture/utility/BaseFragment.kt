@@ -1,7 +1,5 @@
-package kkhura.com.quotes.app.utility
+package codeliver128.com.codeliver128architecture
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -9,10 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import kkhura.com.quotes.app.R
 import kkhura.com.quotes.app.customview.CustomFontTextView
-import kkhura.com.quotes.app.quotesHome.fragment.QuotesCategoryFragment
 
 private const val PERMISSION_REQUEST_CODE = 1001
 
@@ -36,12 +31,12 @@ open class BaseFragment : androidx.fragment.app.Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?) {
+   /* override fun onPrepareOptionsMenu(menu: Menu?) {
         if (!(this is QuotesCategoryFragment)) {
             menu!!.clear();
         }
         super.onPrepareOptionsMenu(menu)
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)

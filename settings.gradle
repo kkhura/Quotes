@@ -1,1 +1,1 @@
-include ':utility', ':app', ':base', ':instantapp'
+include ':utility', ':app', ':base', ':instantapp', ':codeliver128architecture'
